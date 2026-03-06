@@ -228,3 +228,6 @@ This project implements core deep learning concepts:
 - Numerical stability (softmax)
 
 ---
+
+# W&B Report Link: 
+https://api.wandb.ai/links/priyanshuvsp2841-indian-institute-of-technology-madras/2l7ovo82
