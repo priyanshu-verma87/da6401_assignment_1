@@ -1,0 +1,23 @@
+{
+    "dataset": "mnist",
+    "epochs": 15,
+    "batch_size": 32,
+    "loss": "cross_entropy",
+    "optimizer": "momentum",
+    "learning_rate": 0.01,
+    "weight_decay": 0,
+    "num_layers": 3,
+    "hidden_size": [
+        128,
+        128,
+        128
+    ],
+    "activation": [
+        "tanh",
+        "tanh",
+        "tanh"
+    ],
+    "weight_init": "xavier",
+    "wandb_project": "da6401_assignment_1",
+    "model_save_path": "src/best_model.npy"
+}

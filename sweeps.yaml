@@ -1,0 +1,38 @@
+# sweeps.yaml for Hyperparameter Sweep
+entity: priyanshuvsp2841-indian-institute-of-technology-madras
+project: da6401_assignment_1
+program: src/train.py
+command:
+  - ${env}
+  - python
+  - -m
+  - src.train
+  - ${args}
+method: random # Efficiently samples 100 diverse sets
+metric:
+  name: val_f1
+  goal: maximize
+run_cap: 100 # the sweep will stop after 100 total runs
+parameters:
+  epochs:
+    values: [5, 10, 15]
+  batch_size:
+    values: [16, 32, 64]
+  optimizer:
+    values: ["sgd", "momentum", "nag", "rmsprop"]
+  learning_rate:
+    values: [0.1, 0.01, 0.001, 0.0001]
+  weight_decay:
+    values: [0.0, 0.0005, 0.5]
+  hidden_size:
+    values:
+      - [32, 64, 128]
+      - [32, 32, 32, 64, 64, 128]
+      - [128, 128, 128]
+      - [64, 128, 128, 128]
+  activation:
+    values: ["relu", "sigmoid", "tanh"]
+  weight_init:
+    values: ["random", "xavier"]
+  wandb_project:
+    values: ["da6401_assignment_1"]

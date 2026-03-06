@@ -1,0 +1,5 @@
+numpy
+wandb
+keras
+scikit-learn
+matplotlib
