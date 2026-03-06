@@ -1,5 +1,6 @@
 numpy
 wandb
 keras
+tensorflow # for keras backend
 scikit-learn
 matplotlib
