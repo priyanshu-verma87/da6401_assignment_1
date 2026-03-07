@@ -231,3 +231,7 @@ This project implements core deep learning concepts:
 
 # W&B Report Link: 
 https://api.wandb.ai/links/priyanshuvsp2841-indian-institute-of-technology-madras/2l7ovo82
+
+# Github Link:
+https://github.com/priyanshu-verma87/da6401_assignment_1
+
