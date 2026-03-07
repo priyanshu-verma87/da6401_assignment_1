@@ -8,8 +8,8 @@ import json
 import os
 import numpy as np
 import wandb
-from src.ann.neural_network import NeuralNetwork
-from src.utils.data_loader import load_data 
+from ann.neural_network import NeuralNetwork
+from utils.data_loader import load_data 
 
 
 def parse_arguments():
@@ -47,7 +47,7 @@ def main():
     args = parse_arguments()
     
     # Initialize W&B
-    run = wandb.init(project=args.wandb_project, config=args) 
+    run = wandb.init(project=args.wandb_project, config=args, mode="disabled") 
     args.__dict__.update(wandb.config)
 
     # Load all sets
@@ -55,11 +55,11 @@ def main():
     num_classes = len(np.unique(y_train))
 
     # Ensure hidden_size is always a list and set num_layers accordingly
+    args.num_layers = len(args.hidden_size)
     if len(args.activation) == 1:
         args.activation = args.activation * args.num_layers
     
-    args.num_layers = len(args.hidden_size)
-
+    
     model = NeuralNetwork(args) 
     
     for epoch in range(args.epochs):
@@ -87,13 +87,13 @@ def main():
         
 
     # Final Save 
-    best_weights = model.get_weights() 
-    np.save(args.model_save_path, best_weights) 
+    # best_weights = model.get_weights() 
+    # np.save(args.model_save_path, best_weights) 
 
-    config_dict = vars(args)
-    config_path = os.path.join("src", "best_config.json")
-    with open(config_path, "w") as f:
-        json.dump(config_dict, f, indent=4)
+    # config_dict = vars(args)
+    # config_path = os.path.join("src", "best_config.json")
+    # with open(config_path, "w") as f:
+    #     json.dump(config_dict, f, indent=4)
 
     print("Training complete!")
 

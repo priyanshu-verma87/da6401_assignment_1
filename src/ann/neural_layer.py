@@ -31,6 +31,7 @@ class NeuralLayer:
         """
         x shape: (batch_size, input_dim)
         """
+        
         self.input = x # we will store it for backward pass
         return x @ self.W + self.b
     

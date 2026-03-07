@@ -6,15 +6,15 @@ Evaluate trained models on test sets
 import argparse
 import numpy as np
 import json
-from src.ann.neural_network import NeuralNetwork
-from src.utils.data_loader import load_data 
+from ann.neural_network import NeuralNetwork
+from utils.data_loader import load_data 
 
 
 def parse_arguments():
     """
     Parse command-line arguments
     """
-    parser = argparse.ArgumentParser(description='Train a modular MLP using NumPy.')
+    parser = argparse.ArgumentParser(description='Evaluate trained model.')
     
     # Dataset and basic training info
     parser.add_argument('-d', '--dataset', type=str, default='mnist', choices=['mnist', 'fashion_mnist'], help='Choose between mnist and fashion_mnist') 
@@ -81,12 +81,11 @@ def main():
     # Load Data
     _, _, _, _, X_test, y_test = load_data(args.dataset)
     
-    # Initialize Model and Load Weights 
+    args.num_layers = len(args.hidden_size)
     if len(args.activation) == 1:
         args.activation = args.activation * args.num_layers
     
-    args.num_layers = len(args.hidden_size)
-    
+    # Initialize Model and Load Weights 
     model = NeuralNetwork(args)
     weights = load_model_weights(args.model_save_path)
     model.set_weights(weights)
